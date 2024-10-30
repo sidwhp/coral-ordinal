@@ -72,7 +72,9 @@ class MeanAbsoluteErrorLabels(tf.keras.metrics.Metric):
     def reset_state(self):
         """Resets all of the metric state variables at the start of each epoch."""
         # K.batch_set_value([(v, 0) for v in self.variables])
-        K.batch_set_value([(self.maes, 0), (self.count, 0)])
+        # K.batch_set_value([(self.maes, 0), (self.count, 0)])
+        self.maes.assign(0)
+        self.count.assign(0)
 
     def get_config(self):
         """Returns the serializable config of the metric."""
